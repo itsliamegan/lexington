@@ -1,0 +1,80 @@
+@import '../modules/colors';
+@import '../modules/spacings';
+@import '../modules/radiuses';
+
+.btn {
+  padding: $sm-spacing;
+
+  border: 1px solid $border;
+  border-radius: $md-radius;
+  outline: none;
+
+  background-color: $gray-light;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($gray-light, 5%);
+  }
+
+  &:active {
+    background-color: darken($gray-light, 7.5%);
+  }
+
+  &:disabled {
+    background-color: $gray-light !important;
+    cursor: not-allowed;
+  }
+
+  &--primary#{&}--transparent {
+    color: $primary;
+    background-color: transparent;
+
+    &:hover {
+      color: $text-light;
+    }
+  }
+
+  &--primary {
+    color: $text-light;
+    background-color: $primary;
+    border-color: darken($primary, 7.5%);
+
+    &:hover {
+      background-color: darken($primary, 5%);
+    }
+
+    &:active {
+      background-color: darken($primary, 7.5%);
+    }
+  }
+
+  &--success {
+    color: $text-light;
+    background-color: $success;
+    border-color: darken($success, 7.5%);
+
+    &:hover {
+      background-color: darken($success, 5%);
+    }
+
+    &:active {
+      background-color: darken($success, 7.5%);
+    }
+  }
+
+  &--danger {
+    color: $text-light;
+    background-color: $danger;
+    border-color: darken($danger, 7.5%);
+
+    &:hover {
+      background-color: darken($danger, 5%);
+    }
+
+    &:active {
+      background-color: darken($danger, 7.5%);
+    }
+  }
+}

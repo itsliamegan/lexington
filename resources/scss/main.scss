@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import 'vendor/normalize';
+@import 'components/button';
+@import 'components/table';
+@import 'components/form';
+@import 'components/status-chip';
+@import 'layout/header';
+@import 'layout/content';
+@import 'layout/list';
+@import 'layout/individual';
+@import 'pages/sign-in';
+@import 'pages/individual-ticket';
+@import 'pages/individual-documentation';
+
+html,
+body {
+  font-size: 15px;
+  font-family: Nunito, sans-serif;
+}

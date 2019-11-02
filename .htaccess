@@ -1,0 +1,19 @@
+RewriteEngine On
+
+AddEncoding gzip .gz
+
+RewriteCond %{HTTP:Accept-encoding} gzip
+RewriteCond %{REQUEST_FILENAME}\.gz -s
+RewriteRule ^(.*)\.css $1\.css\.gz [QSA]
+
+RewriteCond %{HTTP:Accept-encoding} gzip
+RewriteCond %{REQUEST_FILENAME}\.gz -s
+RewriteRule ^(.*)\.js $1\.js\.gz [QSA]
+
+RewriteRule \.css\.gz$ - [T=text/css,E=no-gzip:1]
+RewriteRule \.js\.gz$ - [T=text/javascript,E=no-gzip:1]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ public/index.php [NC,QSA,L]
+
+RewriteRule !^(adminer|public|favicon)/?.*$ public/index.php [F,L]

@@ -1,0 +1,41 @@
+@import '../modules/colors';
+@import '../modules/spacings';
+@import '../modules/radiuses';
+
+.individual {
+  width: 60vw;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+.individual__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.individual__section {
+  padding: $md-spacing $lg-spacing;
+  margin-bottom: $lg-spacing;
+  border: 1px solid $border;
+  border-radius: $sm-radius;
+}
+
+.individual__section-title {
+  margin-top: 0;
+  margin-bottom: $xs-spacing;
+}
+
+.individual__title {
+  margin: 0;
+  margin-right: auto;
+
+  font-size: 40px;
+}
+
+.individual__image {
+  margin-left: auto;
+  width: 125px;
+}

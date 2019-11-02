@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  {{ parent() }}
+
+  <div class="page">
+    <header class="header">
+      <a href="/lexington/tickets">
+        <img class="header__logo" src="/lexington/public/assets/img/logo.png" alt="Logo"/>
+      </a>
+
+      <form action="/lexington/{{ search_type|default('tickets') }}/search" autocomplete="off">
+        <div class="header__search">
+          <input class="header__search-input" name="q" placeholder="Search..." value="{{ search_query }}" type="text"/>
+          <button class="header__search-button" type="submit">
+            <img class="header__search-icon" src="/lexington/public/assets/img/search.svg" alt="Search" />
+          </button>
+        </div>
+      </form>
+
+      <nav class="header__links">
+        <a class="header__link" href="/lexington/tickets">Tickets</a>
+        <a class="header__link" href="/lexington/devices">Devices</a>
+        <a class="header__link" href="/lexington/loaners">Loaners</a>
+        <a class="header__link" href="/lexington/documentation">Documentation</a>
+        <a class="header__link" href="/lexington/feedback">Feedback</a>
+
+        {% if current_user.is_admin %}
+          <a class="header__link" href="/lexington/admin">Admin</a>
+        {% endif %}
+      </nav>
+
+      <div class="header__user-info" data-js="header-user-info">
+        <img class="header__user-photo" src="{{ current_user.photo }}" alt="Profile Photo" />
+        <img class="header__user-dropdown-icon" src="/lexington/public/assets/img/chevron-down.svg" alt="Dropdown" />
+      
+        <div class="header__user-menu" data-js="header-user-menu">
+          <div class="header__user-menu-item">
+            <span>Signed in as</span>
+            <span class="header__user-menu-name">{{ current_user.name }}</span>
+          </div>
+          <a href="/lexington/sign-out" class="header__user-menu-item header__user-menu-sign-out">Sign Out</a> 
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+{% endblock %}

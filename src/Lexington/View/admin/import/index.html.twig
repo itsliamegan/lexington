@@ -1,0 +1,52 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="individual">
+    <h3 class="individual__section-title">Import Tickets</h3>
+    <section class="individual__section">
+      <form class="form" method="POST" action="/lexington/admin/import/tickets" enctype="multipart/form-data">
+        <div class="form__pair">
+          <label class="form__label" for="tickets-csv">Tickets CSV</label>
+          <input class="form__field" name="tickets-csv" type="file" accept=".csv" />
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn">Import</button>
+        </div>
+      </form>
+    </section>
+
+    <h3 class="individual__section-title">Import Devices From Lexington v1</h3>
+    <section class="individual__section">
+      <form class="form" method="POST" action="/lexington/admin/import/lexington-devices" enctype="multipart/form-data">
+        <div class="form__pair">
+          <label class="form__label" for="devices-csv">Devices CSV</label>
+          <input class="form__field" name="devices-csv" type="file" accept=".csv" />
+        </div>
+
+        <div class="form__pair">
+          <label class="form__label" for="associations-csv">Ticket Associations CSV</label>
+          <input class="form__field" name="associations-csv" type="file" accept=".csv" />
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn">Import</button>
+        </div>
+      </form>
+    </section>
+
+    <h3 class="individual__section-title">Import Devices from Google Admin Console</h3>
+    <section class="individual__section">
+      <form class="form" method="POST" action="/lexington/admin/import/google-devices" enctype="multipart/form-data">
+        <div class="form__pair">
+          <label class="form__label" for="devices-csv">Devices CSV</label>
+          <input class="form__field" name="devices-csv" type="file" accept=".csv" />
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn">Import</button>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="individual">
+    <header class="individual__section individual__header">
+      {% if is_creation %}
+        <h2 class="individual__title">New Status</h2>
+      {% else %}
+        <h2 class="individual__title">{{ status.name }}</h2>
+      {% endif %}
+    </header>
+
+    <h3 class="individual__section-title">Details</h3>
+    <section class="individual__section">
+      <form class="form" action="/lexington/admin/statuses/{{ is_creation ? 'new' : status.code }}" autocomplete="off" method="POST">
+        <div class="form__pair">
+        <label class="form__label" for="name">Name</label>
+        <input class="form__field" required data-lpignore="true" name="name" type="text" value="{{ status.name }}"/>
+        </div>
+
+        <div class="form__pair">
+        <label class="form__label" for="code">Code</label>
+        <input class="form__field" required name="code" type="text" value="{{ status.code }}"/>
+        </div>
+
+        <div class="form__pair">
+        <label class="form__label" for="placement">Placement</label>
+        <input class="form__field" required type="number" name="placement" value="{{ status.placement }}"/>
+        </div>
+
+        <div class="form__pair">
+          <label class="form__label" for="action-type">Action Type</label>
+          <select class="form__field" name="action-type" required>
+            {% if is_creation %}
+              <option disabled selected></option>
+            {% endif %}
+
+            {% for action_type in action_types %}
+              {% set selected = action_type.id is same as(status.actionType.id) ? 'selected' : '' %}
+              <option value="{{ action_type.id }}" {{ selected }}>{{ action_type.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form__actions">
+          <button class="btn btn--primary" type="submit">Save</button>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="individual">
+    <header class="individual__section individual__header">
+      {% if is_creation %}
+        <h2 class="individual__title">New Issue</h2>
+      {% else %}
+        <h2 class="individual__title">{{ issue.name }}</h2>
+      {% endif %}
+    </header>
+
+    <h3 class="individual__section-title">Details</h3>
+    <section class="individual__section">
+      <form class="form" action="/lexington/admin/issues/{{ is_creation ? 'new' : issue.code }}" autocomplete="off" method="POST">
+        <div class="form__pair">
+          <label class="form__label" for="name">Name</label>
+          <input class="form__field" name="name" required type="text" value="{{ issue.name }}"/>
+        </div>
+
+        <div class="form__pair">
+          <label class="form__label" for="code">Code</label>
+          <input class="form__field" name="code" required type="text" value="{{ issue.code }}"/>
+        </div>
+
+        <div class="form__actions">
+          <button class="btn btn--primary" type="submit">Save</button>
+        </div>
+      </form>
+    </section>
+  </div>
+{% endblock %}

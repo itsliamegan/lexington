@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <link rel="shortcut icon" href="/lexington/favicon.ico">
+    <title>{{ title|default('Lexington') }}</title>
+    {% block styles %}
+      <link href="/lexington/public/assets/css/main.css" rel="stylesheet"/>
+    {% endblock %}
+  </head>
+
+  <body>
+    {% block body %}{% endblock %}
+    {% block scripts %}
+      <script src="/lexington/public/assets/js/main.js"></script>
+    {% endblock %}
+  </body>
+</html>

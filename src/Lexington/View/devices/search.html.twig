@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">Results for "{{ search_query }}"</h2>
+    </header>
+
+    <table class="table sortable">
+      <tr class="table__header-row">
+        <th>Name</th>
+        <th>Serial Number</th>
+        <th>Asset Tag</th>
+        <th>Loaner</th>
+      </tr>
+
+      {% for device in devices %}
+        <tr class="table__data-row">
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.name }}
+            </a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.serial_number }}
+            </a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.asset_tag }}
+            </a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.is_loaner ? 'Yes' : 'No' }}
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

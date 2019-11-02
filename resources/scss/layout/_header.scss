@@ -1,0 +1,167 @@
+@import '../modules/spacings';
+@import '../modules/colors';
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+
+  height: 60px;
+  padding: $sm-spacing $md-spacing;
+  box-sizing: border-box;
+
+  background-color: $gray-dark;
+  color: $text-light;
+}
+
+.header__logo {
+  height: 35px;
+
+  filter: invert(100%);
+
+  &:hover {
+    filter: invert(80%);
+  }
+}
+
+.header__search {
+  position: relative;
+}
+
+.header__search-input {
+  height: 30px;
+  width: 200px;
+  padding: $xs-spacing;
+  margin: 0 $md-spacing;
+  box-sizing: border-box;
+
+  border-radius: $md-radius;
+  border: none;
+  outline: none;
+
+  background-color: #404448;
+
+  &:focus {
+    background-color: #fff;
+  }
+}
+
+.header__search-button {
+  position: absolute;
+  top: 3px;
+  right: $md-spacing + 5px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 25px;
+  width: 25px;
+  border: none;
+  outline: none;
+
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.header__search-icon {
+  height: 15px;
+}
+
+.header__link {
+  margin: 0 $xs-spacing;
+
+  color: $text-light;
+
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    color: darken($text-light, 20%);
+  }
+}
+
+.header__user-info {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin-left: auto;
+
+  cursor: pointer;
+}
+
+.header__user-photo {
+  height: 25px;
+  width: 25px;
+  margin-right: $xs-spacing;
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.header__user-dropdown-icon {
+  height: 15px;
+  pointer-events: none;
+}
+
+.header__user-menu {
+  position: absolute;
+  top: 150%;
+  right: 0;
+
+  display: none; // flex
+  flex-direction: column;
+
+  width: 200px;
+  height: 100px;
+  border: 1px solid $border;
+  border-radius: $md-radius;
+
+  background-color: #fff;
+  color: $text-dark;
+  box-shadow: 0 3px 12px rgba(27,31,35,.15);
+
+  &--open {
+    display: flex;
+  }
+}
+
+.header__user-menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+
+  width: 100%;
+  padding: $sm-spacing $md-spacing;
+  box-sizing: border-box;
+  border-bottom: 1px solid $border;
+
+  user-select: none;
+
+  &:hover {
+    color: $text-light;
+    background-color: $primary;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.header__user-menu-name {
+  margin-top: $xs-spacing;
+
+  font-weight: bold;
+}
+
+.header__user-menu-sign-out {
+  color: $text-dark;
+  text-decoration: none;
+}

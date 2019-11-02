@@ -1,0 +1,9 @@
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; }
+
+.sign-in__logo {
+  width: 75px; }

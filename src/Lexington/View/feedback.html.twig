@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="individual">
+    <div class="individual__section">
+      <form class="form" method="POST">
+        <div class="form__pair">
+          <label for="content" class="form__label form__label--top">Please enter your feedback below</label>
+          <textarea name="content" class="form__field form__field--large" name=""></textarea>
+        </div>
+
+        <div class="form__actions">
+          <button class="btn btn--primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

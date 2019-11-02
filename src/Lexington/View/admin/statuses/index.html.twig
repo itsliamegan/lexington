@@ -1,0 +1,41 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">All Statuses</h2>
+
+      <div class="list__actions">
+        <a href="/lexington/admin/statuses/new">
+          <button class="btn btn--primary">New</button>
+        </a>
+      </div>
+    </header>
+
+    <table class="table sortable">
+      <tr class="table__header-row">
+        <th>Name</th>
+        <th>Code</th>
+        <th>Placement</th>
+        <th>Action Type</th>
+      </tr>
+
+      {% for status in statuses %}
+        <tr class="table__data-row">
+          <td>
+            <a href="/lexington/admin/statuses/{{ status.code }}">{{ status.name }}</a>
+          </td>
+          <td>
+            <a href="/lexington/admin/statuses/{{ status.code }}">{{ status.code }}</a>
+          </td>
+          <td>
+            <a href="/lexington/admin/statuses/{{ status.code }}">{{ status.placement }}</a>
+          </td>
+          <td>
+            <a href="/lexington/admin/statuses/{{ status.code }}">{{ status.actionType.name }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

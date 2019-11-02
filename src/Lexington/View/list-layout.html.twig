@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">{{ title }}</h2>
+
+      <div class="list__actions">
+        {% block actions %}{% endblock %}
+      </div>
+    </header>
+
+    {% block table %}{% endblock %}
+  </div>
+{% endblock %}

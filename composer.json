@@ -1,0 +1,35 @@
+{
+  "name": "lexington/lexington",
+  "description": "A ticketing system for Chromebook issues",
+  "type": "project",
+  "license": "GPL-3.0",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/liam-egan/vector"
+    }
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  },
+  "scripts": {
+    "analyze": "phpstan analyze src/ --level max",
+    "fix": "php-cs-fixer fix src/"
+  },
+  "require": {
+    "erusev/parsedown": "^1.7",
+    "google/apiclient": "^2.2",
+    "illuminate/database": "^5.8",
+    "vector/vector": "0.1.9"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "nunomaduro/larastan": "^0.3.17",
+    "phpstan/phpstan": "^0.11.8"
+  }
+}

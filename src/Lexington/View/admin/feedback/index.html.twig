@@ -1,0 +1,25 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">All Feedback</h2>
+    </header>
+
+    <table class="table sortable">
+      <tr class="table__header-row">
+        <th>Created By</th>
+        <th>Created On</th>
+        <th>Content</th>
+      </tr>
+
+      {% for fb in feedback %}
+          <tr class="table__data-row">
+            <td>{{ fb.createdBy.name }}</td>
+            <td>{{ fb.created_at|date('m/d/Y', 'America/New_York') }}</td>
+            <td>{{ fb.content }}</td>
+          </tr>
+      {% endfor %}
+    </table>
+  </div>  
+{% endblock %}

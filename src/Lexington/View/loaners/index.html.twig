@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">All Loaners</h2>
+    </header>
+
+    <table class="table table--auto-layout sortable">
+      <tr class="table__header-row">
+        <th>Name</th>
+        <th>Availability</th>
+      </tr>
+
+      {% for loaner in loaners %}
+        <tr class="table__data-row">
+          <td>
+            <a href="/lexington/devices/{{ loaner.asset_tag }}">{{ loaner.name }}</a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ loaner.asset_tag }}">{{ loaner.isAvailable ? 'Available' : 'Unavailable' }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

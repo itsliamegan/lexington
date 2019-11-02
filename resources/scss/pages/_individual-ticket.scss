@@ -1,0 +1,11 @@
+@import '../modules/spacings';
+
+.individual-ticket__updates {
+  max-height: 500px;
+  overflow: auto;
+}
+
+.individual-ticket__update-changes {
+  margin-top: $xs-spacing;
+  margin-bottom: $lg-spacing;
+}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <main class="sign-in">
+    <img class="sign-in__logo" src="/lexington/public/assets/img/logo.png" alt="Logo"/>
+    <h1>Lexington</h1>
+    <button data-js="sign-in" id="sign-in-button" class="btn btn--primary btn--transparent">Sign In</button>
+
+    <form data-js="sign-in-form" method="POST">
+      <input data-js="token" name="token" type="hidden"/>
+    </form>
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+
+  <script src="https://apis.google.com/js/platform.js"></script>
+  <script src="/lexington/public/assets/js/sign-in.js"></script>
+{% endblock %}

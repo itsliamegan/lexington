@@ -1,0 +1,19 @@
+parser: babel-eslint
+
+env:
+  browser: true
+
+plugins:
+  - prettier
+
+extends:
+  - eslint:recommended
+  - airbnb-base
+  - prettier
+
+rules:
+  prettier/prettier: error
+  no-console: warn
+  no-use-before-define:
+    - error
+    - functions: false

@@ -1,0 +1,27 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">All Issues</h2>
+    </header>
+
+    <table class="table sortable">
+      <tr class="table__header-row">
+        <th>Name</th>
+        <th>Code</th>
+      </tr>
+
+      {% for issue in issues %}
+        <tr class="table__data-row">
+          <td>
+            <a href="/lexington/admin/issues/{{ issue.code }}">{{ issue.name }}</a>
+          </td>
+          <td>
+            <a href="/lexington/admin/issues/{{ issue.code }}">{{ issue.code }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

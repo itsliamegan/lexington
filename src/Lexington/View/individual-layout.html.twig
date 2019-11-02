@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="individual">
+      <header class="individual__header individual__section">
+        <h2 class="individual__title">{{ title }}</h2>
+        {% block header %}{% endblock %} 
+      </header>
+
+      <h3 class="individual__section-title">Details</h3>
+      <section class="individual__section">
+        {% block details %}{% endblock %}
+      </section>
+
+      {% block sections %}{% endblock %}
+  </div>
+{% endblock %}

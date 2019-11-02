@@ -1,0 +1,69 @@
+{% extends 'list-layout.html.twig' %}
+
+{% block actions %}
+  <button class="btn" type="button" data-js="open-actions-menu">Actions</button>
+
+  <a href="/lexington/tickets/new">
+    <button type="button" class="btn btn--primary">New</button>
+  </a>
+  
+  <form method="POST" action="/lexington/tickets/action" id="tickets-action">
+    <div data-js="actions-menu" class="list__actions-menu">
+      <div class="list__actions-menu-item">
+        <input type="radio" name="action" value="next" />
+        <label for="action">Next Status</label>
+      </div>
+
+      <div class="list__actions-menu-item">
+        <input type="radio" name="action" value="resolve" />
+        <label for="action">Resolve</label>
+      </div>
+
+      <button class="btn list__actions-menu-item" type="submit">Commit</button>
+    </div>
+  </form>
+{% endblock %}
+
+{% block table %}
+  <table class="table">
+    <tr class="table__header-row">
+      <th></th>
+      <th>ID</th>
+      <th>Issue</th>
+      <th>Liability</th>
+      <th>Loaner</th>
+      <th>Device</th>
+      <th>Serial Number</th>
+      <th>Status</th>
+    </tr>
+
+    {% for ticket in tickets %}
+      <tr class="table__data-row">
+        <td>
+          <input form="tickets-action" class="table__checkbox" type="checkbox" name="tickets[]" value="{{ ticket.id }}"/>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.id }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.issue.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.liability.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.loaner.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.device.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.device.serial_number }}</a>
+        </td>
+        <td>
+          <a class="status-chip status-chip--{{ ticket.status.actionType.code }}" href="/lexington/tickets/{{ ticket.id }}">{{ ticket.status.name }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

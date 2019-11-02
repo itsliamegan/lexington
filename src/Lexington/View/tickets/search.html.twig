@@ -1,0 +1,37 @@
+{% extends 'list-layout.html.twig' %}
+
+{% block table %}
+  <table class="table sortable">
+    <tr class="table__header-row">
+      <th>ID</th>
+      <th>Issue</th>
+      <th>Liability</th>
+      <th>Loaner</th>
+      <th>Device</th>
+      <th>Status</th>
+    </tr>
+
+    {% for ticket in tickets %}
+      <tr class="table__data-row">
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.id }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.issue.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.liability.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.loaner.name }}</a>
+        </td>
+        <td>
+          <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.device.name }}</a>
+        </td>
+        <td>
+          <a class="status-chip status-chip--{{ ticket.status.actionType.code }}" href="/lexington/tickets/{{ ticket.id }}">{{ ticket.status.name }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

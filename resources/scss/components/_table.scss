@@ -1,0 +1,66 @@
+@import '../modules/colors';
+@import '../modules/spacings';
+
+.table {
+  width: 100%;
+  border-spacing: 0;
+
+  &--auto-layout {
+    table-layout: auto;
+  }
+}
+
+.table__header-row {
+  cursor: pointer;
+
+  & th {
+    padding-bottom: $sm-spacing;
+    border-bottom: 1px solid $border;
+
+    color: #777;
+    
+    text-align: left;
+  }
+}
+
+.table__data-row {
+  cursor: pointer;
+
+  & td {
+    height: 1px;
+    border-bottom: 1px solid $border;
+  }
+
+  & a {
+    display: block;
+    padding: $sm-spacing 0;
+
+    color: $text-dark;
+
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $hover;
+  }
+}
+
+.table__checkbox {
+  transform: scale(1.10);
+}
+
+.table__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: $sm-spacing auto;
+}
+
+.table__pagination-button {
+  width: 100px;
+}
+
+.table__pagination-text {
+  margin: 0 $sm-spacing;
+}

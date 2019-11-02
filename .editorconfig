@@ -1,0 +1,12 @@
+root = true
+
+[*]
+indent_style = space
+end_of_line = lf
+insert_final_newline = true
+
+[*.php]
+indent_size = 4
+
+[*.{css, js, json, scss}]
+indent_size = 2

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <link href="/lexington/public/assets/css/print.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <header class="print__header print__section">
+      <div class="print__header-major-info">
+        <h1 class="print__header-title">{{ ticket.school.name }} : #{{ ticket.id }}</h1>
+
+        {% if ticket.device is defined %}
+          <h2 class="print__header-devices">
+            {{ ticket.device.name }}
+            <br>
+            ({{ ticket.device.asset_tag }} | {{ ticket.device.serial_number }})
+          </h2>
+        {% endif %}
+        <br>
+        <h2 class="print__header-issue">{{ ticket.issue.name }}</h2>
+        <h2 class="print__header-payment">{{ ticket.liability.name }}</h2>
+
+        {% if ticket.liability.code == 'bill' %}
+          <br>
+          <div class='print__header-bill-sent-area'>
+            <h2 class='print__header-bill-sent'>Bill Sent</h2>
+            <span class='print__header-checkbox' />
+          </div>
+        {% endif %}
+      </div>
+
+      <img src="/lexington/qrcode?ticket={{ ticket.id }}&size=4.5" alt="qrcode" class="print__header-qrcode">
+    </header>
+
+    <section class="print__section print__description">
+      <p class="print__description-text">{{ ticket.description }}</p>
+    </section>
+
+    <div class="print__info">
+      <section class="print__section print__loaners">
+        <table class="print__loaners-table">
+          <tr class="print__loaners-table-row">
+            <th class="print__loaners-table-header">
+              <span class="print__loaners-table-header-text">Loaner</span>
+            </th>
+            <th class="print__loaners-table-header">
+              <span class="print__loaners-table-header-text">Assigned On</span>
+            </th>
+          </tr>
+          <tr class='print__loaners-table-row'>
+            <td class='print__loaners-table-data'>{{ ticket.loaner.name }}</td>
+            <td class='print__loaners-table-data'>
+              {% if ticket.loaner.id is not null %}
+                {{ ticket.created_at|date('m/d/Y g:ia', 'America/New_York') }}
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="print__section print__details">
+        <h3 class="print__details-text">
+          <span class="print__details-label">Created:</span>
+          {{ ticket.created_at|date('m/d/Y g:ia', 'America/New_York') }}
+        </h3>
+        <br>
+        <h3 class="print__details-text">
+          <span class="print__details-label">Created By:</span>
+          {{ ticket.createdBy.name }}
+        </h3>
+      </section>
+    </div>
+
+    <script src="/lexington/public/assets/js/print.js"></script>
+  </body>
+</html>

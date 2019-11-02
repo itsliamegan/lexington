@@ -1,0 +1,122 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="individual">
+    <header class="individual__section individual__header">
+      {% if is_creation %}
+        <h2 class="individual__title">New Device</h2>
+      {% else %}
+        <h2 class="individual__title">{{ device.name }}</h2>
+      {% endif %}
+    </header>
+
+    <h3 class="individual__section-title">Details</h3>
+    <section class="individual__section">
+      <form class="form" action="/lexington/devices/{{ is_creation ? 'new' : device.asset_tag }}" autocomplete="off" data-js="device-form" method="POST">
+
+        <div class="form__pair">
+          <label for="name" class="form__label">Name</label>
+          <input class="form__field" required data-js="device-name" data-lpignore="true" type="text" name="name" value="{{ device.name }}"/>  
+        </div>
+        
+        <div class="form__pair">
+          <label class="form__label" for="serial-number">Serial Number</label>
+          <input class="form__field" required data-lpignore="true" type="text" name="serial-number" value="{{ device.serial_number }}"/>
+        </div>
+
+        <div class="form__pair">
+          <label class="form__label" for="asset-tag">Asset Tag</label>
+          <input class="form__field" required data-lpignore="true" type="text" name="asset-tag" value="{{ device.asset_tag }}"/>
+        </div>
+
+        <div class="form__pair">
+          {% set checked = device.is_loaner ? 'checked' : '' %}
+          <label class="form__label" for="is-loaner">Loaner</label>
+          <input class="form__field form__field--checkbox" type="checkbox" name="is-loaner" {{ checked }}/>
+        </div>
+
+        <div class="form__actions">
+          <button class="btn btn--primary" data-js="save-device" type="submit">Save</button>
+        </div>
+      </form>
+    </section>
+
+    {% if not is_creation %}
+      <h3 class="individual__section-title">Tickets</h3>
+      <section class="individual__section">
+        <table class="table sortable">
+          <tr class="table__header-row">
+            <th>ID</th>
+            <th>Issue</th>
+            <th>Liability</th>
+            <th>Loaner</th>
+            <th>Device</th>
+            <th>Status</th>
+          </tr>
+
+          {% for ticket in device.tickets %}
+            <tr class="table__data-row">
+              <td>
+                <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.id }}</a>
+              </td>
+              <td>
+                <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.issue.name }}</a>
+              </td>
+              <td>
+                <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.liability.name }}</a>
+              </td>
+              <td>
+                <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.loaner.name }}</a>
+              </td>
+              <td>
+                <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.device.name }}</a>
+              </td>
+              <td>
+                <a class="status-chip status-chip--{{ ticket.status.actionType.code }}" href="/lexington/tickets/{{ ticket.id }}">{{ ticket.status.name }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </section>
+
+      {% if device.is_loaner %}
+        <h3 class="individual__section-title">Loans</h3>
+        <section class="individual__section">
+          <table class="table">
+            <tr class="table__header-row">
+              <th>ID</th>
+              <th>Issue</th>
+              <th>Liability</th>
+              <th>Loaner</th>
+              <th>Device</th>
+              <th>Status</th>
+            </tr>
+
+            {% for ticket in device.loans %}
+              <tr class="table__data-row">
+                <td>
+                  <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.id }}</a>
+                </td>
+                <td>
+                  <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.issue.name }}</a>
+                </td>
+                <td>
+                  <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.liability.name }}</a>
+                </td>
+                <td>
+                  <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.loaner.name }}</a>
+                </td>
+                <td>
+                  <a href="/lexington/tickets/{{ ticket.id }}">{{ ticket.device.name }}</a>
+                </td>
+                <td>
+                  <a class="status-chip status-chip--{{ ticket.status.actionType.code }}" href="/lexington/tickets/{{ ticket.id }}">{{ ticket.status.name }}</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </section>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+  <div class="list">
+    <header class="list__header">
+      <h2 class="list__title">All Devices</h2>
+
+      <div class="list__actions">
+        <a href="/lexington/devices/new">
+          <button class="btn btn--primary">New</button>
+        </a>
+      </div>
+    </header>
+
+    <table class="table sortable">
+      <tr class="table__header-row">
+        <th>Name</th>
+        <th>Serial Number</th>
+        <th>Asset Tag</th>
+        <th>Loaner</th>
+      </tr>
+
+      {% for device in devices %}
+        <tr class="table__data-row">
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.name }}
+            </a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.serial_number }}
+            </a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.asset_tag }}
+            </a>
+          </td>
+          <td>
+            <a href="/lexington/devices/{{ device.asset_tag }}">
+              {{ device.is_loaner ? 'Yes' : 'No' }}
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    
+    <div class="table__pagination">
+      {% set disabled = current_page == 1 ? 'disabled' : '' %}
+      <a href="/lexington/devices?p={{ current_page - 1 }}&per={{ per_page }}">
+        <button class="btn table__pagination-button" {{ disabled }}>Previous</button>
+      </a>
+
+      <span class="table__pagination-text">Page {{ current_page }} of {{ max_page }}</span>
+
+      {% set disabled = current_page == max_page ? 'disabled' : '' %}
+      <a href="/lexington/devices?p={{ current_page + 1 }}&per={{ per_page }}">
+        <button class="btn table__pagination-button" {{ disabled }}>Next</button>
+      </a>
+    </div>
+  </div>
+{% endblock %}

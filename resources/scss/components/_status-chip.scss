@@ -1,0 +1,16 @@
+@import '../modules/colors';
+
+.status-chip {
+  font-weight: bold;
+  
+  &--take_action {
+    color: $primary !important;
+  }
+
+  &--refer_to_admin {
+    color: $danger !important;
+  }
+
+  &--wait {
+  }
+}

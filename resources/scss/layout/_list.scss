@@ -1,0 +1,63 @@
+@import '../modules/colors';
+@import '../modules/spacings';
+@import '../modules/radiuses';
+
+.list {
+  width: 80vw;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+.list__header {
+  display: flex;
+  align-items: center;
+
+  padding-bottom: $sm-spacing;
+  margin-bottom: $lg-spacing;
+  border-bottom: 1px solid $border;
+}
+
+.list__title {
+  margin: 0;
+}
+
+.list__actions {
+  position: relative;
+  margin-left: auto;
+
+  & > * {
+    margin: 0 $xs-spacing;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.list__actions-menu {
+  position: absolute;
+
+  display: none;
+  flex-direction: column;
+
+  padding: $sm-spacing $md-spacing;
+  border: 1px solid $border;
+  border-radius: $md-radius;
+
+  background-color: #fff;
+  box-shadow: 0 3px 12px rgba(27,31,35,.15);
+
+  &--open {
+    display: flex;
+  }
+}
+
+.list__actions-menu-item {
+  margin: $xs-spacing 0;
+}

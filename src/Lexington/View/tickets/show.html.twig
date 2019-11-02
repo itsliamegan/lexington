@@ -1,0 +1,137 @@
+{% extends 'individual-layout.html.twig' %}
+
+{% block header %}
+  {% if not is_creation %}
+    <img class="individual__image" src="/lexington/qrcode?ticket={{ ticket.id }}&size=5"/>
+  {% endif %}
+{% endblock %}
+
+{% block details %}
+  <form class="form" autocomplete="off" data-js="ticket-form" method="POST" data-ticket-id="{{ ticket.id|default('new')}}">
+    <div class="form__row">
+      <div class="form__column">
+        <div class="form__pair">
+          <label for="status" class="form__label">Status</label>
+          <select name="status" required class="form__field">
+            {% if is_creation %}
+              <option disabled selected></option>
+            {% endif %}
+
+            {% for status in statuses %}
+              {% set selected = status.id is same as(ticket.status.id)  ? 'selected' : '' %}
+              {% set currentStatus = selected ? 'data-js=current-status' : '' %}
+              {% set nextStatus = status.id is same as(ticket.nextStatus.id) ? 'data-js=next-status' : '' %}
+
+              <option value="{{ status.id }}" {{ selected }} {{ currentStatus }} {{ nextStatus }}>
+                {{ status.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        
+        <div class="form__pair">
+          <label for="issue" class="form__label">Issue</label>
+          <select name="issue" required class="form__field">
+            {% if is_creation %}
+              <option disabled selected></option>
+            {% endif %}
+
+            {% for issue in issues %}
+              {% set selected = issue.id is same as(ticket.issue.id)  ? 'selected' : '' %}
+
+              <option value="{{ issue.id }}" {{ selected }}>
+                {{ issue.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form__pair">
+          <label for="liability" class="form__label">Liability</label>
+          <select name="liability" required class="form__field">
+            {% if is_creation %}
+              <option disabled selected></option>
+            {% endif %}
+
+            {% for liability in liabilities %}
+              {% set selected = liability.id is same as(ticket.liability.id) ? 'selected' : '' %}
+
+              <option value="{{ liability.id }}" {{ selected }}>
+                {{ liability.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form__pair">
+          <label for="school" class="form__label">School</label>
+          <select name="school" required class="form__field">
+            {% if is_creation %}
+              <option disabled selected></option>
+            {% endif %}
+
+            {% for school in schools %}
+              {% set selected = school.id is same as(ticket.school.id)  ? 'selected' : '' %}
+
+              <option value="{{ school.id }}" {{ selected }}>
+                {{ school.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- <div class="form__pair">
+          <label class="form__label">No Loaner</label>
+          <input type="checkbox" />
+        </div> -->
+      </div>
+
+      <div class="form__column form__column--right">
+        <div>
+          <label for="description" class="form__label form__label--top">Description</label>
+          <textarea name="description" class="form__field form__field--large">{{ ticket.description }}</textarea>
+        </div>
+
+        <div class="form__pair">
+          <label for="device" class="form__label">Device</label>
+          <input class="form__field" data-js="device-name" list="device-names" name="device" type="text" value="{{ ticket.device.name }}"/>
+          <datalist data-js="device-names" id="device-names"></datalist>
+        </div>
+        
+        <div class="form__pair">
+          <label for="loaner" class="form__label">Loaner</label>
+          <input class="form__field" data-js="loaner-name" list="loaner-names" name="loaner" type="text" value="{{ ticket.loaner.name }}"/>
+          <datalist data-js="loaner-names" id="loaner-names"></datalist>
+        </div>
+      </div>
+    </div>
+
+    <div class="form__row form__actions">
+      {% if not is_creation %}
+        <button class="btn" data-js="advance-status" type="button">Next Status</button>
+        <button class="btn" data-js="print-ticket" type="button">Print</button>
+      {% endif %}
+
+      <button class="btn btn--primary" data-js="save-ticket" type="submit">Save</button>
+    </div>
+  </form>
+{% endblock %}
+
+{% block sections %}
+  {% if not is_creation %}
+    <h3 class="individual__section-title">Updates</h3>
+    <section class="individual__section individual-ticket__updates">
+      {% for update in ticket.updates %}
+        <div>
+          <span>{{ update.created_at|date('m/d/Y g:ia', 'America/New_York') }} {{ update.createdBy.name }} </span>
+        </div>
+
+        <ul class="individual-ticket__update-changes">
+          {% for change in update.changes %}
+            <li>{{ change }}</li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </section>
+  {% endif %}
+{% endblock %}
